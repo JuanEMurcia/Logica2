@@ -25,7 +25,7 @@ def StringtoTree(A, letrasProposicionales):
     conectivos = ['~', 'v', '&', '>']
     pila = []
     for c in A:
-        if c not in conectivos:
+        if c not in conectivos and c in letrasProposicionales:
             pila.append(Tree(c,None,None))
         else :
             if c == '~':
