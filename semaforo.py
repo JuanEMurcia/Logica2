@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+conectivosB = ["v","&",">"]
+
 class Tree(object):
 	def __init__(self, r, iz, der):
 		self.left = iz
@@ -16,9 +20,8 @@ def Inorder(f):
     else:
         return "(" + Inorder(f.left) + f.label + Inorder(f.right) + ")"
 
-
 def StringtoTree(A, letrasProposicionales):
-    # Crea una formula como tree dada una formula como cadena escrita en notacion polaca inversa
+    # Crea una formula Inorder(StringtoTree(regla,letras))como tree dada una formula como cadena escrita en notacion polaca inversa
     # Input: A, lista de caracteres con una formula escrita en notacion polaca inversa
              # letrasProposicionales, lista de letras proposicionales
     # Output: formula como tree
@@ -39,6 +42,17 @@ def StringtoTree(A, letrasProposicionales):
                 pila.append(formulaAux)
     return pila[-1]
 
+def n(A,letrasProposicionales):
+	if A == None:
+		return 0
+	if A.label in letrasProposicionales:
+		return 0
+	if A.label == "~":
+		return 1+n(A.right,letrasProposicionales)
+	if A.label in conectivosB:
+		return n(A.left,letrasProposicionales)+n(A.right,letrasProposicionales)
+	return 0
+
 regla = ""
 letras = ["R","A","V"]
 
@@ -54,4 +68,6 @@ for i in letras:
         regla = regla+regla_aux+"v" #Si no es la primera regla que creo, la uno con un O
     count = False #Ya no es la primera regla que creo
 
-print(Inorder(StringtoTree(regla,letras)))
+A = StringtoTree(regla, letras)
+print(Inorder(A))
+print("EL arbol tiene %d negaciones" % n(A,letras))
