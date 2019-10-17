@@ -98,6 +98,8 @@ def Clausula(C):
 
     l = []
     while len(C) > 0:
+    	#Prueba de push and pull
+    	x = 0
         s = C[0]
         if s == 'O':
             C = C[1:]
