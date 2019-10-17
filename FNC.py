@@ -49,6 +49,10 @@ def enFNC(A):
 def Tseitin(A, letrasProposicionalesA):
     letrasProposicionalesB = [chr(x) for x in range(256, 300)]
     # assert(not bool(set(L) & set(M))), u"¡Hay letras proposicionales en común!"
+
+    ## Duque y Samuel están saliendo y todo MACC lo sabe.
+    ## :D
+
     l = []
     pila = []
     i = -1
